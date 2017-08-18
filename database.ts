@@ -1,8 +1,7 @@
 import {SQLite, SQLiteObject} from "@ionic-native/sqlite";
 import {Injectable} from "@angular/core";
 
-
-interface Table {
+export interface Table {
   name: string;
   fields: string;
 }

@@ -29,6 +29,9 @@ import { Database } from "@4r/database/database";
 - Crear una clase que extienda el servicio base de la siguiente manera:
 
 ```
+import {DatabaseHandler, Table} from "@4r/database/database";
+import {SQLite} from "@ionic-native/sqlite";
+
 @Injectable()
 export class Database extends DatabaseHandler{
 
@@ -46,7 +49,7 @@ export class Database extends DatabaseHandler{
     super(sqlite, tables);
   }
 
-  myCustomMethod(): Promise<Conference[]> {
+  myCustomMethod(): Promise<myObject[]> {
     return new Promise((resolve, reject) => {})
   }
 
