@@ -12,8 +12,7 @@ export class DatabaseHandler {
   db: SQLiteObject = null;
 
   constructor(public sqlite: SQLite, public tables: Table[]) {
-    this.sqlite = sqlite;
-    this.tables = tables;
+    this.init()
   }
 
   init(): Promise<any> {
