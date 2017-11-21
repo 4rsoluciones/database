@@ -1,5 +1,6 @@
 import {SQLite, SQLiteObject} from "@ionic-native/sqlite";
 import {Injectable} from "@angular/core";
+import {Platform} from "ionic-angular";
 
 export interface Table {
   name: string;
@@ -11,9 +12,7 @@ export class DatabaseHandler {
   dbName: string = 'myDB.db';
   db: SQLiteObject = null;
 
-  constructor(public sqlite: SQLite, public tables: Table[]) {
-    this.init()
-  }
+  constructor(platform: Platform, public sqlite: SQLite, public tables: Table[]) { }
 
   init(): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -35,7 +34,7 @@ export class DatabaseHandler {
   createAllTablesIfNotExists(): Promise<any> {
     let promises: Promise<any>[] = [];
     for (let i = 0; i < this.tables.length; i++) {
-      promises.push(this.createTableIfNotExists(this.tables[i].name, this.tables[i].fields));
+      promises.push(this.createTableIfNotExists(this.tables[i].name, this.tables[i].fields).catch(err => console.log(err)));
     }
     return Promise.all(promises);
   }
